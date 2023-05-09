@@ -2,7 +2,7 @@ import { P } from './style'
 
 export type Props = {
   children: string
-  type?: 'principal' | 'secundaria'
+  type?: 'principal' | 'secundario'
 }
 
 const Paragraph = ({ children, type = 'principal' }: Props) => (
