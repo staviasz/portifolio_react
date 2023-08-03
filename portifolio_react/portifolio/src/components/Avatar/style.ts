@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const StyleAvatar = styled.img`
   max-width: 100%;
@@ -8,4 +8,4 @@ export const StyleAvatar = styled.img`
   @media (max-width: 768px) {
     width: 128px;
   }
-`
+`;

@@ -1,10 +1,10 @@
-import styled from 'styled-components'
-import { P } from '../../components/Paragraph/style'
+import styled from "styled-components";
+import { P } from "../../components/Paragraph/style";
 
 export const Description = styled(P)`
   margin-top: 24px;
   margin-bottom: 40px;
-`
+`;
 export const ButtonTheme = styled.button`
   border-radius: 12px;
   padding: 8px;
@@ -14,7 +14,7 @@ export const ButtonTheme = styled.button`
   background-color: ${(props) => props.theme.corPrincipal};
   border: none;
   cursor: pointer;
-`
+`;
 
 export const SidebarContainer = styled.div`
   position: sticky;
@@ -25,4 +25,4 @@ export const SidebarContainer = styled.div`
     text-align: center;
     margin-bottom: 40px;
   }
-`
+`;

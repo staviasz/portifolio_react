@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from "styled-components";
 
 const EstiloGlobal = createGlobalStyle`
   * {
@@ -16,9 +16,9 @@ const EstiloGlobal = createGlobalStyle`
       padding: 40px 0;
     }
   }
-`
+`;
 
-export default EstiloGlobal
+export default EstiloGlobal;
 
 export const Container = styled.div`
   max-width: 1024px;
@@ -40,4 +40,17 @@ export const Container = styled.div`
   img {
     max-width: 100%;
   }
-`
+`;
+
+export const List = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 36px;
+  row-gap: 40px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 16px;
+  }
+`;

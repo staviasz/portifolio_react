@@ -1,5 +1,9 @@
-import { StyleAvatar } from './style'
+import { StyleAvatar } from "./style";
 
-const Avatar = () => <StyleAvatar src="https://github.com/staviasz.png" />
+interface Props {
+  avatar_url: string;
+}
 
-export default Avatar
+const Avatar = ({ avatar_url = "" }: Props) => <StyleAvatar src={avatar_url} />;
+
+export default Avatar;

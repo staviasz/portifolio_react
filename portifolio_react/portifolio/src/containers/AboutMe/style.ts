@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const GithubSection = styled.div`
   margin-top: 32px;
@@ -13,4 +13,4 @@ export const GithubSection = styled.div`
       width: 100%;
     }
   }
-`
+`;
