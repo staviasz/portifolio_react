@@ -1,16 +1,16 @@
 import Avatar from "../../components/Avatar";
 import Paragraph from "../../components/Paragraph";
 import Title from "../../components/title";
-import { ButtonTheme, Description, SidebarContainer } from "./style";
+import { ButtonTheme, SidebarContainer } from "./style";
 
 type Props = {
-  cangeTheme: () => void;
+  changeTheme: () => void;
   avatar_url: string;
   name: string;
   usuario: string;
 };
 
-const Sidebar = ({ avatar_url, name, usuario, cangeTheme }: Props) => (
+const Sidebar = ({ avatar_url, name, usuario, changeTheme }: Props) => (
   <aside>
     <SidebarContainer>
       <Avatar avatar_url={avatar_url} />
@@ -18,10 +18,7 @@ const Sidebar = ({ avatar_url, name, usuario, cangeTheme }: Props) => (
       <Paragraph type="secundario" fontSize={16}>
         {usuario}
       </Paragraph>
-      <Description fontSize={12} type="principal">
-        Engenheiro FrontEnd
-      </Description>
-      <ButtonTheme onClick={cangeTheme}>Trocar tema</ButtonTheme>
+      <ButtonTheme onClick={changeTheme}>Trocar tema</ButtonTheme>
     </SidebarContainer>
   </aside>
 );

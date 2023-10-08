@@ -9,7 +9,6 @@ const EstiloGlobal = createGlobalStyle`
   }
 
   body {
-    padding: 80px 0;
     background-color: ${(props) => props.theme.corDeFundo};
 
     @media (max-width: 768px) {
@@ -51,6 +50,7 @@ const EstiloGlobal = createGlobalStyle`
 export default EstiloGlobal;
 
 export const Container = styled.div`
+  padding-top: 80px;
   max-width: 1024px;
   width: 100%;
   margin: 0 auto;

@@ -6,6 +6,7 @@ export const Description = styled(P)`
   margin-bottom: 40px;
 `;
 export const ButtonTheme = styled.button`
+  margin-top: 24px;
   border-radius: 12px;
   padding: 8px;
   color: ${(props) => props.theme.corDeFundo};
