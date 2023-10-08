@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 
 import AboutMe from "./containers/AboutMe";
@@ -9,12 +9,16 @@ import EstiloGlobal, { Container, List } from "./style";
 import Projects from "./components/Projects";
 import darkTheme from "./containers/themes/dark";
 import lightTheme from "./containers/themes/light";
-import { DataProps, initialData, mapData } from "./mapData/mapData";
+import { DataProps, RepoProps, initialData, mapData } from "./mapData/mapData";
 import { getUserInfo, getUserRepositores } from "./service/gitHubApi";
 
 function App() {
   const [darkThemeActive, setDarkThemeActive] = useState(false);
   const [data, setData] = useState<DataProps>(initialData);
+  const [repos, setRepos] = useState<RepoProps[]>([]);
+  const [index, setIndex] = useState(0);
+
+  const perPage = 6;
 
   function changeTheme() {
     setDarkThemeActive(!darkThemeActive);
@@ -31,14 +35,41 @@ function App() {
         ]);
 
         const cleanData = mapData([dataInfo], dataRepos);
-        console.log("info", cleanData);
         setData(() => cleanData[0]);
+        setRepos(() => cleanData[0].repositores.slice(0, perPage));
       };
       getData();
     } catch (e) {
       //
     }
   }, []);
+
+  const loadRepos = (
+    e: MouseEvent<HTMLButtonElement> | MouseEvent<HTMLSpanElement>,
+    list: "next" | "prev" | "" = ""
+  ) => {
+    let newIndex: number;
+
+    if (list === "next") {
+      newIndex = index + perPage;
+      setIndex(newIndex);
+      setRepos(data.repositores.slice(newIndex, newIndex + perPage));
+    } else if (list === "prev") {
+      newIndex = index - perPage;
+      setIndex(newIndex);
+      setRepos(data.repositores.slice(newIndex, newIndex + perPage));
+    } else {
+      const value = Number((e.target as HTMLSpanElement).textContent);
+      newIndex = (value - 1) * perPage;
+      setIndex(newIndex);
+      setRepos(data.repositores.slice(newIndex, newIndex + perPage));
+    }
+  };
+
+  const pagesListRepos = [];
+  for (let i = 1; i <= data.repositores.length / perPage; i++) {
+    pagesListRepos.push(i);
+  }
 
   return (
     <ThemeProvider theme={darkThemeActive ? darkTheme : lightTheme}>
@@ -49,10 +80,26 @@ function App() {
           <AboutMe {...data} />
           <List>
             {data.repositores &&
-              data.repositores.map((repo) => {
+              repos.map((repo) => {
                 return <Projects key={repo.name_repo} {...repo} />;
               })}
           </List>
+          <div className="pagination">
+            <button onClick={(e) => loadRepos(e, "prev")} disabled={index <= 0}>
+              &lt;
+            </button>
+            {pagesListRepos.map((i) => (
+              <span key={i} onClick={(e) => loadRepos(e)}>
+                {i}
+              </span>
+            ))}
+            <button
+              onClick={(e) => loadRepos(e, "next")}
+              disabled={data.repositores.length - 1 <= index + perPage}
+            >
+              &gt;
+            </button>
+          </div>
         </main>
       </Container>
     </ThemeProvider>

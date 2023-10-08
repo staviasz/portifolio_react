@@ -42,7 +42,7 @@ export const mapData = (info: any[], repos: any[]): DataProps[] => {
   });
 };
 
-interface RepoProps {
+export interface RepoProps {
   name_repo: string;
   language: string;
   src_repo: string;

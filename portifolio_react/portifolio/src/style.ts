@@ -16,6 +16,36 @@ const EstiloGlobal = createGlobalStyle`
       padding: 40px 0;
     }
   }
+
+  .pagination {
+    margin-top: 32px;
+    color: ${(props) => props.theme.corPrincipal};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      padding: 8px;
+
+      &:hover {
+        cursor: pointer;
+        color: #4476bf;
+      }
+    }
+    
+    button {
+      color: ${(props) => props.theme.corPrincipal};
+      border: none;
+      background-color: transparent;
+      padding: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      
+      &:disabled {
+        display: none;
+      }
+    }
+  }
 `;
 
 export default EstiloGlobal;
